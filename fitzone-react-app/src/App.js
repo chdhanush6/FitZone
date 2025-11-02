@@ -13,8 +13,8 @@ function App() {
   const [submitStatus, setSubmitStatus] = useState({ message: '', type: '' });
   const [loading, setLoading] = useState(false);
 
-  // ✅ Added environment variable for backend URL
-  const BACKEND_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+  // Backend URL configuration
+  const BACKEND_URL = "https://fitzone-1-bny6.onrender.com";
 
   const openModal = (e) => {
     e.preventDefault();
@@ -87,11 +87,21 @@ function App() {
 
       // ✅ Use environment-based URL instead of hardcoded localhost
       try {
-        const testResponse = await fetch(`${BACKEND_URL}/test`);
-        if (!testResponse.ok) {
+        const testResponse = await fetch(`${BACKEND_URL}/test`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'include'
+      });
+        
+      if (!testResponse.ok) {
           throw new Error('Backend server is not responding properly');
-        }
+      }
       } catch (error) {
+        console.error('Test endpoint error:', error);
         throw new Error('Cannot connect to the backend server. Please make sure it is running.');
       }
 
@@ -101,6 +111,8 @@ function App() {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
+        mode: 'cors',
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
 
