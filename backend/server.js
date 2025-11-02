@@ -10,6 +10,15 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
+// ✅ Allow requests from your frontend
+app.use(cors({
+  origin: [""], // replace with your deployed frontend URL
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.use(express.json());
+
 // Enable better error logging
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
@@ -68,7 +77,7 @@ const connectDB = async () => {
 connectDB().then((success) => {
   if (!success) {
     console.log('Retrying MongoDB connection in 5 seconds...');
-    setTimeout(connectDB, 5000);
+    setTimeout(connectDB, 5001);
   }
 });
 

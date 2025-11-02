@@ -13,6 +13,9 @@ function App() {
   const [submitStatus, setSubmitStatus] = useState({ message: '', type: '' });
   const [loading, setLoading] = useState(false);
 
+  // ✅ Added environment variable for backend URL
+  const BACKEND_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+
   const openModal = (e) => {
     e.preventDefault();
     setModalOpen(true);
@@ -82,9 +85,9 @@ function App() {
     try {
       console.log('Sending form data:', formData);
 
-      // First test if the server is running
+      // ✅ Use environment-based URL instead of hardcoded localhost
       try {
-        const testResponse = await fetch('http://localhost:5001/test');
+        const testResponse = await fetch(`${BACKEND_URL}/test`);
         if (!testResponse.ok) {
           throw new Error('Backend server is not responding properly');
         }
@@ -92,7 +95,7 @@ function App() {
         throw new Error('Cannot connect to the backend server. Please make sure it is running.');
       }
 
-      const response = await fetch('http://localhost:5001/api/memberships', {
+      const response = await fetch(`${BACKEND_URL}/api/memberships`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +112,6 @@ function App() {
           message: data.message || 'Membership application submitted successfully! You will receive a confirmation email shortly.',
           type: 'success'
         });
-        // Show success message for 2 seconds before closing
         setTimeout(() => {
           closeModal();
         }, 2000);
