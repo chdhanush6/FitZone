@@ -10,15 +10,6 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
-// ✅ Allow requests from your frontend
-app.use(cors({
-  origin: [""], // replace with your deployed frontend URL
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
-app.use(express.json());
-
 // Enable better error logging
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
@@ -26,7 +17,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'], // Allow frontend application
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://fit-zone-phi.vercel.app'], // Allow frontend application
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
