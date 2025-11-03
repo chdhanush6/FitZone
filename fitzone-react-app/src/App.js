@@ -158,7 +158,19 @@ function App() {
             <li><a href="#stories">Stories</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <a href="#membership" className="btn-primary" onClick={openModal}>Get Membership</a>
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <a href="/admin" className="btn-admin" style={{
+              padding: '10px 20px',
+              backgroundColor: '#667eea',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              fontSize: '14px',
+              fontWeight: '600',
+              transition: 'all 0.3s ease'
+            }}>Admin Login</a>
+            <a href="#membership" className="btn-primary" onClick={openModal}>Get Membership</a>
+          </div>
           <div className="menu-btn">☰</div>
         </nav>
       </header>
