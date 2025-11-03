@@ -13,21 +13,8 @@ header { background: #000; padding: 15px 30px; position: sticky; top: 0; z-index
 .nav-links a { font-weight: bold; transition: color 0.3s ease; }
 .nav-links a:hover { color: #32cd32; }
 .menu-btn { display: none; font-size: 2em; cursor: pointer; }
+.nav-actions { display: flex; gap: 10px; }
 .btn-primary { padding: 8px 15px; background: linear-gradient(90deg,#32cd32,#00bfff); border-radius: 20px; font-weight: bold; }
-.btn-admin { 
-  padding: 10px 20px; 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  color: white; 
-  border-radius: 6px; 
-  font-size: 14px; 
-  font-weight: 600; 
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-.btn-admin:hover { 
-  transform: translateY(-2px); 
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
 
 /* HERO */
 .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; min-height: 100vh; padding: 50px 20px; background: #0d0d0d; }
